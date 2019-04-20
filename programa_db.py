@@ -2,8 +2,8 @@ import sqlite3
 import main
 
 def menu():
-        x = True
-        while x == True:
+       
+        while True:
                 print('0 - Cria Banco de Dados')
                 print('1 - Gravar Dados')
                 print('2 - Vizualizar')
@@ -17,7 +17,7 @@ def menu():
                         main.mostra()
                         print(50*'#')
                 if r == 3:
-                        x = False
+                        break
 
 menu()
 
