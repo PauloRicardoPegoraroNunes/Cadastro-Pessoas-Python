@@ -1,44 +1,28 @@
 import sqlite3
+import defs
 
-def cria():
-    print('Para criar deve apagar o ja existente')
-    conect = sqlite3.connect('cadastro.db')
-    cursor = conect.cursor()
-    cursor.execute("""
-    CREATE TABLE cliente (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    nome TEXT NOT NULL,
-    idade NUMBER,
-    cpf     VARCHAR(11) NOT NULL,
-    email TEXT NOT NULL
-    );
-    """)
-    conect.close()
-
-
-def insert():
-    conect = sqlite3.connect('cadastro.db')
-    cursor = conect.cursor()
-    nome = str(input('Nome : '))
-    idade = int(input('Idade : '))
-    cpf = str(input('Cpf : '))
-    email = str(input('Email : '))
-    cursor.execute("""
-    INSERT INTO cliente(nome, idade, cpf, email)
-    VALUES (?,?,?,?)
-    """,(nome,idade,cpf,email))
-    conect.commit()
-    conect.close()
+def menu():
+        
+        while True:
+                print('0 - Cria Banco de Dados')
+                print('1 - Gravar Dados')
+                print('2 - Vizualizar')
+                print('3 - Sair')
+                r = int(input('Escolha : '))
+                if r == 0:
+                        defs.cria()
+                if r == 1:
+                        defs.insert()
+                if r == 2:
+                        defs.mostra()
+                        print(50*'#')
+                if r == 3:
+                        break
+menu()
 
 
 
-def mostra():
-    print(50*'#')
-    conect = sqlite3.connect('cadastro.db')
-    cursor = conect.cursor()
-    cursor.execute("""
-    SELECT * FROM cliente;
-    """)
-    for lx in cursor.fetchall():
-        print(lx)
-    conect.close()
+
+
+
+
